@@ -59,13 +59,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-    <?php if ($user > 0) {
-        echo '<div class="alart">
-            <p>Email already exist!!! Please <a href="log-in.php">Log-in</a></p>
-        </div>';
-    } ?>
 
     <div class="container">
+        <?php if ($user > 0) {
+            echo '<div class="alart">
+            <p>Email already exist!!! Please <a href="log-in.php">Log-in</a></p>
+        </div>';
+        } ?>
         <div class="form">
             <div class="head">
                 <h2>Registration</h2>

@@ -5,7 +5,6 @@ if (isset($_SESSION['user'])) {
     header('location:index.php');
 }
 
-$user    = 0;
 $invalid_input = 0;
 
 // Take action after form submit
@@ -25,10 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $num = mysqli_num_rows($result);
 
         if ($num > 0) {
-            // Email exist.
-            $user = 1;
+
+            $row = mysqli_fetch_assoc($result);
+
             session_start();
-            $_SESSION['user'] = $email;
+            $_SESSION['user'] = $row['full_name'];
             header('location: index.php');
         } else {
             $invalid_input = 1;
@@ -50,14 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-
-    <?php if ($invalid_input > 0) {
-        echo '<div class="alart">
+    <div class="container">
+        <?php if ($invalid_input > 0) {
+            echo '<div class="alart">
             <p>Email or Password is not match!!!</p>
         </div>';
-    } ?>
-
-    <div class="container">
+        } ?>
         <div class="form">
             <div class="head">
                 <h2>Log-In</h2>
